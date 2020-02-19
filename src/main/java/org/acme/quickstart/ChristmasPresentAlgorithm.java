@@ -10,6 +10,10 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 
@@ -25,6 +29,36 @@ public class ChristmasPresentAlgorithm {
     public String greeting(@PathParam String name) {
         return service.greeting(name);
     	}
+    
+    @GET
+    @Path("/productvalues")
+    public String Produkte() {
+    	String csvFileProdukte = "/Users/soeren.kleideiter/getting-started/src/main/java/org/acme/quickstart/Produkte.csv";
+    	String line = "";
+    	String cvsSplitBy =",";
+    	
+    	try (BufferedReader br = new BufferedReader(new FileReader(csvFileProdukte))) {
+
+            while ((line = br.readLine()) != null) {
+
+                // use comma as separator
+                String[] ProduktValues = line.split(cvsSplitBy);
+
+                System.out.println(ProduktValues);
+                
+            }
+            String Produkte = "done";
+            return Produkte;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		return null;
+    }
+    
+    
+    
+    
     
     @Inject
     HelloVoice hello;
@@ -58,6 +92,7 @@ public class ChristmasPresentAlgorithm {
     	
     	return hello.getUserName(name) + yourAge.getUserAge(age) + yourGender.getUserGender(gender) + yourTag1.getUserTag1(tag1) + yourTag2.getUserTag2(tag2) + yourTag3.getUserTag3(tag3) + yourInsta.getUserInsta(insta) + yourMainCat.getUserMainCat(maincat);
         }
+    
     
 /* @Inject
     AgeVoice yourAge;

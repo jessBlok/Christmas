@@ -6,7 +6,7 @@ import javax.enterprise.context.ApplicationScoped;
 public class MainCatVoice {
 
     public String getUserMainCat(String maincat) {
-        return " Your main categorie on Amazon is " + maincat +".";
+        return " Your main category on Amazon is " + maincat +".";
     }
 
 }
