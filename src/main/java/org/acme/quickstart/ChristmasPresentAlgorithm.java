@@ -16,6 +16,8 @@ import java.io.IOException;
 
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
+import java.util.HashMap;
+
 
 @Path("/Present")
 public class ChristmasPresentAlgorithm {
@@ -37,16 +39,38 @@ public class ChristmasPresentAlgorithm {
     	String line = "";
     	String cvsSplitBy =",";
     	
+    	HashMap<String, String> productvalues = new HashMap<String, String>();
+    	 	
+    	
     	try (BufferedReader br = new BufferedReader(new FileReader(csvFileProdukte))) {
-
+    	int LineCount = 0;
+    	String[] headerList = null;
             while ((line = br.readLine()) != null) {
-
-                // use comma as separator
+            	if (LineCount == 0) {
+            		headerList = line.split(cvsSplitBy);
+            		LineCount++;
+            	}
+            	else { 
+            	// use comma as separator
                 String[] ProduktValues = line.split(cvsSplitBy);
-
-                System.out.println(ProduktValues);
                 
+                int index = 0;
+                
+                for(String produktValue: ProduktValues )
+                {
+                	String keyName = ProduktValues[0] + "_" + headerList[index];
+                    productvalues.put(keyName, ProduktValues[index]);
+                    index++;
+                }
+                
+                             
+                
+               
+            	}
             }
+            System.out.println(productvalues);
+            String CasioUhr = productvalues.get("Casio Uhr_0_10");
+            System.out.println(CasioUhr);
             String Produkte = "done";
             return Produkte;
 
@@ -89,6 +113,63 @@ public class ChristmasPresentAlgorithm {
     		@QueryParam("tag3") String tag3,
     		@QueryParam("maincat") String maincat)
     		{ 
+    	
+    	//HASH TABLE FUNCTIONS//
+    	String csvFileProdukte = "/Users/soeren.kleideiter/getting-started/src/main/java/org/acme/quickstart/Produkte.csv";
+    	String line = "";
+    	String cvsSplitBy =",";
+    	
+    	HashMap<String, String> productvalues = new HashMap<String, String>();
+    	 	
+    	
+    	try (BufferedReader br = new BufferedReader(new FileReader(csvFileProdukte))) {
+    	int LineCount = 0;
+    	String[] headerList = null;
+            while ((line = br.readLine()) != null) {
+            	if (LineCount == 0) {
+            		headerList = line.split(cvsSplitBy);
+            		LineCount++;
+            	}
+            	else { 
+            	// use comma as separator
+                String[] ProduktValues = line.split(cvsSplitBy);
+                
+                int index = 0;
+                
+                for(String produktValue: ProduktValues )
+                {
+                	String keyName = ProduktValues[0] + "_" + headerList[index];
+                    productvalues.put(keyName, ProduktValues[index]);
+                    index++;
+                }
+                
+                             
+                
+               
+            	}
+            }
+            System.out.println(productvalues);
+            String CasioUhr = productvalues.get("Casio Uhr_0_10");
+            System.out.println(CasioUhr);
+          
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    	
+    	
+    	//HASH TABLE FUNCTIONS//
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	//RETURN VALUE
     	
     	return hello.getUserName(name) + yourAge.getUserAge(age) + yourGender.getUserGender(gender) + yourTag1.getUserTag1(tag1) + yourTag2.getUserTag2(tag2) + yourTag3.getUserTag3(tag3) + yourInsta.getUserInsta(insta) + yourMainCat.getUserMainCat(maincat);
         }
