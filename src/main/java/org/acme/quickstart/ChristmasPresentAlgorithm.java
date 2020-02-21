@@ -16,6 +16,7 @@ import java.io.IOException;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import java.util.HashMap;
+import java.util.Map.Entry;
 
 //Path "/Present"
 @Path("/Present")
@@ -104,6 +105,7 @@ public class ChristmasPresentAlgorithm {
     //Path "/query"
     
     @GET
+    @Produces(MediaType.TEXT_HTML)
     @Path("/query")
     
     public String MainInfos(
@@ -125,7 +127,6 @@ public class ChristmasPresentAlgorithm {
     	
     	HashMap<String, String> productvalues = new HashMap<String, String>();
     	HashMap<String, Integer> ResultsTable = new HashMap<String, Integer>();
-    	
     	
     	
     	String ErrorMessage = "";
@@ -484,7 +485,7 @@ public class ChristmasPresentAlgorithm {
                                                 		        	   	   }); 
                                         						   }
                                                 		        	   else {
-                                                		        		   ErrorMessage += "\n Ohh.. It's looks like you've made a mistake in your Tag2 (tag2) input. Choose out of this list 'Technik', 'Musik', 'Computerspiele', 'Buecher', 'Essen', 'Comedy', or 'Fashion' .";
+                                                		        		   ErrorMessage += "Ohh.. It's looks like you've made a mistake in your Tag2 (tag2) input. Choose out of this list 'Technik', 'Musik', 'Computerspiele', 'Buecher', 'Essen', 'Comedy', or 'Fashion'.";
                                                 		        	   }
                                         		        	   }
                                 		        	   }
@@ -613,10 +614,91 @@ public class ChristmasPresentAlgorithm {
                 	   }
         		   
         	   }
-           
+           //CHECK
+           //Ab hier age 
+           if (yourAge.getIntAge(age) <= 10) {
+           	System.out.println("Ich bin jünger als 11");
+           	ResultsTable.keySet().forEach(ProductName-> {
+     		   String CompositeString = ProductName + "_0_10";
+     		   String SingleValue = productvalues.get(CompositeString);
+     		   int IntSingleValue = Integer.parseInt(SingleValue);
+     		   int CurrentValue = ResultsTable.get(ProductName) + IntSingleValue;
+     		   ResultsTable.put(ProductName, CurrentValue);
+           	   });
            }
-        
-        	  
+           else {
+        	   if (yourAge.getIntAge(age) <= 20) {
+                  	System.out.println("Ich bin jünger als 21");
+                   	ResultsTable.keySet().forEach(ProductName-> {
+             		   String CompositeString = ProductName + "_11_20";
+             		   String SingleValue = productvalues.get(CompositeString);
+             		   int IntSingleValue = Integer.parseInt(SingleValue);
+             		   int CurrentValue = ResultsTable.get(ProductName) + IntSingleValue;
+             		   ResultsTable.put(ProductName, CurrentValue);
+                   	   });
+        	   }
+                   	else {
+                   		if (yourAge.getIntAge(age) <= 40) {
+                          	System.out.println("Ich bin jünger als 41");
+                           	ResultsTable.keySet().forEach(ProductName-> {
+                     		   String CompositeString = ProductName + "_21_40";
+                     		   String SingleValue = productvalues.get(CompositeString);
+                     		   int IntSingleValue = Integer.parseInt(SingleValue);
+                     		   int CurrentValue = ResultsTable.get(ProductName) + IntSingleValue;
+                     		   ResultsTable.put(ProductName, CurrentValue);
+                           	   });
+                	   }
+                   		else {
+                   			if (yourAge.getIntAge(age) <= 60) {
+                   				System.out.println("Ich bin jünger als 61");
+                   				ResultsTable.keySet().forEach(ProductName-> {
+                   					String CompositeString = ProductName + "_41_60";
+                   					String SingleValue = productvalues.get(CompositeString);
+                   					int IntSingleValue = Integer.parseInt(SingleValue);
+                   					int CurrentValue = ResultsTable.get(ProductName) + IntSingleValue;
+                   					ResultsTable.put(ProductName, CurrentValue);
+                   					});
+                   			}
+                   			else {
+                   				if (yourAge.getIntAge(age) <= 80) {
+                   						System.out.println("Ich bin jünger als 81");
+                   						ResultsTable.keySet().forEach(ProductName-> {
+                   							String CompositeString = ProductName + "_61_80";
+                   							String SingleValue = productvalues.get(CompositeString);
+                   							int IntSingleValue = Integer.parseInt(SingleValue);
+                   							int CurrentValue = ResultsTable.get(ProductName) + IntSingleValue;
+                   							ResultsTable.put(ProductName, CurrentValue);
+                   							});
+                   				}
+                   				else {
+                   					if (yourAge.getIntAge(age) <= 100) {
+                   	                  	System.out.println("Ich bin jünger als 101");
+                   	                   	ResultsTable.keySet().forEach(ProductName-> {
+                   	             		   String CompositeString = ProductName + "_81_100";
+                   	             		   String SingleValue = productvalues.get(CompositeString);
+                   	             		   int IntSingleValue = Integer.parseInt(SingleValue);
+                   	             		   int CurrentValue = ResultsTable.get(ProductName) + IntSingleValue;
+                   	             		   ResultsTable.put(ProductName, CurrentValue);
+                   	                   	   });
+                   					}
+                   	                   	else {
+                   	                   		ErrorMessage += "Ohh.. it seems like you are too old.";
+                   	                   	}
+                   	                   		
+                   	                   	}
+                   	        	   }
+                   				}
+                   		
+                   	}
+                   		
+                   	}
+            System.out.println(ErrorMessage);
+           }
+    	
+        	
+        	
+        	
+			
 
     		
         catch (IOException e) {
@@ -645,12 +727,20 @@ public class ChristmasPresentAlgorithm {
     	
     	
     	
-    	
+        
     	
     	//RETURN VALUE
-    	
-    	return ErrorMessage + " " + /* + hello.getUserName(name) + yourAge.getUserAge(age) + yourGender.getUserGender(gender) + yourTag1.getUserTag1(tag1) + yourTag2.getUserTag2(tag2) + yourTag3.getUserTag3(tag3) + yourInsta.getUserInsta(insta) + yourMainCat.getUserMainCat(maincat) + yourOs.getUserOs(os) + */ ResultsTable;
-        }    	
+    	int currentHighestValue = 0;
+    	String currentBestProduct = "";
+    	for(Entry<String, Integer> entry:ResultsTable.entrySet()) {
+	        if ( entry.getValue() > currentHighestValue) {
+	        	currentHighestValue= entry.getValue();
+	        	currentBestProduct = entry.getKey();
+	        	}
+    	}
+    			
+    	return currentBestProduct /* + "<b>" + ErrorMessage + "</b> " + hello.getUserName(name) + yourAge.getUserAge(age) + /* yourGender.getUserGender(gender) + yourTag1.getUserTag1(tag1) + yourTag2.getUserTag2(tag2) + yourTag3.getUserTag3(tag3) + yourInsta.getUserInsta(insta) + yourMainCat.getUserMainCat(maincat) + yourOs.getUserOs(os) + ResultsTable*/;
+}
 }
 
 
