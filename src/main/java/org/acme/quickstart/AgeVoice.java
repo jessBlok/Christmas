@@ -7,7 +7,7 @@ public class AgeVoice {
 
     public String getUserAge(String age) {
     	//int IntAge = Integer.parseInt(age);
-        return " You are " + age + " years old.";
+        return " You are " + age + ".";
     }
     public Integer getIntAge(String age) {
     	int IntAge = 0 + Integer.parseInt(age);

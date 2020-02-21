@@ -129,7 +129,10 @@ public class ChristmasPresentAlgorithm {
     	HashMap<String, Integer> ResultsTable = new HashMap<String, Integer>();
     	
     	
-    	String ErrorMessage = "";
+    	String ErrorMessage = "<br> <br> <br> <br> <br> If you've made mistakes, or typed something wrong, it would come up here: <br>";
+    	String YourProduct = "<br> We recommend you the following product: ";
+    	String MerryChristmas = "<br> <b> <i>Merry Christmas! </b> </i> 🎄";
+    	
     	
     	try (BufferedReader br = new BufferedReader(new FileReader(csvFileProdukte))) {
     	int LineCount = 0;
@@ -166,7 +169,7 @@ public class ChristmasPresentAlgorithm {
             //String maennlich = "Mann";
             
             //Gender in Tabelle
-            if (gender.equals("Mann")) {
+            if (gender.equals("men")) {
             	//System.out.println("Ja, er ist ein Mann");
             	ResultsTable.keySet().forEach(ProductName->{
                 	String CompositeString = ProductName + "_Maennlich";
@@ -179,7 +182,7 @@ public class ChristmasPresentAlgorithm {
             	
             }
             	else {
-            		if (gender.equals("Frau")) {
+            		if (gender.equals("women")) {
             		//System.out.println("Ja, sie ist eine Frau");
             		ResultsTable.keySet().forEach(ProductName-> {
             			String CompositeString = ProductName + "_Weiblich";
@@ -189,7 +192,7 @@ public class ChristmasPresentAlgorithm {
             			});
             		}
             		else { 
-            			ErrorMessage += "Ohh.. It's looks like you've made a mistake in your gender (gender) input. Try 'Frau' or 'Mann'.";
+            			ErrorMessage += "<br> Ohh.. It's looks like you've made a mistake in your gender (gender=) input. Try 'women' or 'men'.";
             		}
             		
             }
@@ -222,7 +225,7 @@ public class ChristmasPresentAlgorithm {
         				});
         			}
         			else {
-        				ErrorMessage += "\n Ohh.. It's looks like you've made a mistake in insta (insta) input. Try 'oft' or 'selten'.";
+        				ErrorMessage += "<br> Ohh.. It's looks like you've made a mistake in your insta (insta=) input. Try 'oft' or 'selten'.";
         			
         			}
         		// CHECK
@@ -299,7 +302,7 @@ public class ChristmasPresentAlgorithm {
                 		        	   	   }); 
         						   }
                 		        	   else {
-                		        		   ErrorMessage += "\n Ohh.. It's looks like you've made a mistake in your Amazon Category (maincat) input. Choose out of this list 'BuecherCat', 'Elektronik_FotoCat', 'Sport_FreizeitCat', 'UhrenCat', 'Kueche_HaushaltCat', 'MusikCat', or 'SchmuckCat' .";
+                		        		   ErrorMessage += "<br> Ohh.. It's looks like you've made a mistake in your Amazon Category (maincat=) input. Choose out of this list 'BuecherCat', 'Elektronik_FotoCat', 'Sport_FreizeitCat', 'UhrenCat', 'Kueche_HaushaltCat', 'MusikCat', or 'SchmuckCat' .";
                 		        	   }
                 		           }
         					   }
@@ -390,7 +393,7 @@ public class ChristmasPresentAlgorithm {
                                                 		        	   	   }); 
                                         						   }
                                                 		        	   else {
-                                                		        		   ErrorMessage += "\n Ohh.. It's looks like you've made a mistake in your Tag1 (tag1) input. Choose out of this list 'Technik', 'Musik', 'Computerspiele', 'Buecher', 'Essen', 'Comedy', or 'Fashion' .";
+                                                		        		   ErrorMessage += "<br> Ohh.. It's looks like you've made a mistake in your Tag1 (tag1=) input. Choose out of this list 'Technik', 'Musik', 'Spielzeug', 'Computerspiele', 'Buecher', 'Essen', 'Comedy', or 'Fashion' .";
                                                 		        	   }
                                         		        	   }
                                 		        	   }
@@ -485,7 +488,7 @@ public class ChristmasPresentAlgorithm {
                                                 		        	   	   }); 
                                         						   }
                                                 		        	   else {
-                                                		        		   ErrorMessage += "Ohh.. It's looks like you've made a mistake in your Tag2 (tag2) input. Choose out of this list 'Technik', 'Musik', 'Computerspiele', 'Buecher', 'Essen', 'Comedy', or 'Fashion'.";
+                                                		        		   ErrorMessage += "<br> Ohh.. It's looks like you've made a mistake in your Tag2 (tag2=) input. Choose out of this list 'Technik', 'Musik', 'Spielzeug', 'Computerspiele', 'Buecher', 'Essen', 'Comedy', or 'Fashion'.";
                                                 		        	   }
                                         		        	   }
                                 		        	   }
@@ -578,7 +581,7 @@ public class ChristmasPresentAlgorithm {
                                                 		        	   	   }); 
                                         						   }
                                                 		        	   else {
-                                                		        		   ErrorMessage += "\n Ohh.. It's looks like you've made a mistake in your Tag3 (tag3) input. Choose out of this list 'Technik', 'Musik', 'Computerspiele', 'Buecher', 'Essen', 'Comedy', or 'Fashion'.";
+                                                		        		   ErrorMessage += "<br> Ohh.. It's looks like you've made a mistake in your Tag3 (tag3=) input. Choose out of this list 'Technik', 'Musik', 'Spielzeug', 'Computerspiele', 'Buecher', 'Essen', 'Comedy', or 'Fashion'.";
                                                 		        	   }
                                         		        	   }
                                 		        	   }
@@ -590,9 +593,9 @@ public class ChristmasPresentAlgorithm {
         	   }
            //CHECK
            //System.out.println(ResultsTable);
-           if (os.equals("Android")) {
+           if (os.equals("android")) {
         	   ResultsTable.keySet().forEach(ProductName-> {
-        		   String CompositeString = ProductName + "_Android";
+        		   String CompositeString = ProductName + "_android";
         		   String SingleValue = productvalues.get(CompositeString);
         		   int IntSingleValue = Integer.parseInt(SingleValue);
         		   int CurrentValue = ResultsTable.get(ProductName) + IntSingleValue;
@@ -600,9 +603,9 @@ public class ChristmasPresentAlgorithm {
         	   	   }); 
 		   }
         	   else {
-        		   if (os.equals("Apple")) {
+        		   if (os.equals("apple")) {
                 	   ResultsTable.keySet().forEach(ProductName-> {
-                		   String CompositeString = ProductName + "_Apple";
+                		   String CompositeString = ProductName + "_apple";
                 		   String SingleValue = productvalues.get(CompositeString);
                 		   int IntSingleValue = Integer.parseInt(SingleValue);
                 		   int CurrentValue = ResultsTable.get(ProductName) + IntSingleValue;
@@ -610,14 +613,15 @@ public class ChristmasPresentAlgorithm {
                 	   	   }); 
         		   }
                 	   else {
-                		   ErrorMessage += "\n Ohh.. It's looks like you've made a mistake in your Os (os) input. Try 'Apple' or 'Android' .";
+                		   ErrorMessage += "<br> Ohh.. It's looks like you've made a mistake in your Os (os=) input. Try 'apple' or 'android'.";
                 	   }
         		   
         	   }
            //CHECK
            //Ab hier age 
-           if (yourAge.getIntAge(age) <= 10) {
-           	System.out.println("Ich bin jünger als 11");
+           if (age != "") {
+           if ( yourAge.getIntAge(age) <= 10) {
+           	//System.out.println("Ich bin jünger als 11");
            	ResultsTable.keySet().forEach(ProductName-> {
      		   String CompositeString = ProductName + "_0_10";
      		   String SingleValue = productvalues.get(CompositeString);
@@ -628,7 +632,7 @@ public class ChristmasPresentAlgorithm {
            }
            else {
         	   if (yourAge.getIntAge(age) <= 20) {
-                  	System.out.println("Ich bin jünger als 21");
+                  	//System.out.println("Ich bin jünger als 21");
                    	ResultsTable.keySet().forEach(ProductName-> {
              		   String CompositeString = ProductName + "_11_20";
              		   String SingleValue = productvalues.get(CompositeString);
@@ -639,7 +643,7 @@ public class ChristmasPresentAlgorithm {
         	   }
                    	else {
                    		if (yourAge.getIntAge(age) <= 40) {
-                          	System.out.println("Ich bin jünger als 41");
+                          	//System.out.println("Ich bin jünger als 41");
                            	ResultsTable.keySet().forEach(ProductName-> {
                      		   String CompositeString = ProductName + "_21_40";
                      		   String SingleValue = productvalues.get(CompositeString);
@@ -650,7 +654,7 @@ public class ChristmasPresentAlgorithm {
                 	   }
                    		else {
                    			if (yourAge.getIntAge(age) <= 60) {
-                   				System.out.println("Ich bin jünger als 61");
+                   				//System.out.println("Ich bin jünger als 61");
                    				ResultsTable.keySet().forEach(ProductName-> {
                    					String CompositeString = ProductName + "_41_60";
                    					String SingleValue = productvalues.get(CompositeString);
@@ -661,7 +665,7 @@ public class ChristmasPresentAlgorithm {
                    			}
                    			else {
                    				if (yourAge.getIntAge(age) <= 80) {
-                   						System.out.println("Ich bin jünger als 81");
+                   						//System.out.println("Ich bin jünger als 81");
                    						ResultsTable.keySet().forEach(ProductName-> {
                    							String CompositeString = ProductName + "_61_80";
                    							String SingleValue = productvalues.get(CompositeString);
@@ -672,7 +676,7 @@ public class ChristmasPresentAlgorithm {
                    				}
                    				else {
                    					if (yourAge.getIntAge(age) <= 100) {
-                   	                  	System.out.println("Ich bin jünger als 101");
+                   	                  	//System.out.println("Ich bin jünger als 101");
                    	                   	ResultsTable.keySet().forEach(ProductName-> {
                    	             		   String CompositeString = ProductName + "_81_100";
                    	             		   String SingleValue = productvalues.get(CompositeString);
@@ -682,7 +686,7 @@ public class ChristmasPresentAlgorithm {
                    	                   	   });
                    					}
                    	                   	else {
-                   	                   		ErrorMessage += "Ohh.. it seems like you are too old.";
+                   	                   		ErrorMessage += "<br> Ohh.. it seems like you are too old.";
                    	                   	}
                    	                   		
                    	                   	}
@@ -690,9 +694,12 @@ public class ChristmasPresentAlgorithm {
                    				}
                    		
                    	}
-                   		
+           }
                    	}
-            System.out.println(ErrorMessage);
+           else {
+        	   ErrorMessage += "<br> Ohh.. you didn't type in your age.";
+           }
+            //System.out.println(ErrorMessage);
            }
     	
         	
@@ -738,8 +745,12 @@ public class ChristmasPresentAlgorithm {
 	        	currentBestProduct = entry.getKey();
 	        	}
     	}
-    			
-    	return currentBestProduct /* + "<b>" + ErrorMessage + "</b> " + hello.getUserName(name) + yourAge.getUserAge(age) + /* yourGender.getUserGender(gender) + yourTag1.getUserTag1(tag1) + yourTag2.getUserTag2(tag2) + yourTag3.getUserTag3(tag3) + yourInsta.getUserInsta(insta) + yourMainCat.getUserMainCat(maincat) + yourOs.getUserOs(os) + ResultsTable*/;
+    	String NoError = "";
+    	if (ErrorMessage == "<br> <br> <br> <br> <br> If you've made mistakes, or typed something wrong, it would come up here: <br>") {
+    			NoError += "<b> Well done! Everything is right. </b>";
+    	}
+    	
+    	return hello.getUserName(name) + YourProduct + "<br>" + currentBestProduct + MerryChristmas + "<i>" + ErrorMessage + "</i>" + NoError /* + "</b> " + hello.getUserName(name) + yourAge.getUserAge(age) + /* yourGender.getUserGender(gender) + yourTag1.getUserTag1(tag1=) + yourTag2.getUserTag2(tag2) + yourTag3.getUserTag3(tag3) + yourInsta.getUserInsta(insta) + yourMainCat.getUserMainCat(maincat) + yourOs.getUserOs(os) + ResultsTable*/;
 }
 }
 
