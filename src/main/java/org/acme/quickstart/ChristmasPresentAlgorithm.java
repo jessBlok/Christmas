@@ -35,7 +35,7 @@ public class ChristmasPresentAlgorithm {
     @GET
     @Path("/productvalues")
     public String Produkte() {
-    	URL csvFileProdukte = this.getClass().getResource("data/Produkte.csv");
+    	URL csvFileProdukte = getClass().getResource("data/Produkte.csv");
     	String line = "";
     	String cvsSplitBy =",";
     	
