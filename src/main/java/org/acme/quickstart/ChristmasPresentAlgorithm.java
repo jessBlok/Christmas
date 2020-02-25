@@ -35,7 +35,7 @@ public class ChristmasPresentAlgorithm {
     @GET
     @Path("/productvalues")
     public String Produkte() {
-    	String csvFileProdukte = "/Users/soeren.kleideiter/getting-started/src/main/java/org/acme/quickstart/Produkte.csv";
+    	String csvFileProdukte = "Produkte.csv";
     	String line = "";
     	String cvsSplitBy =",";
     	
