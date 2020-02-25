@@ -35,14 +35,14 @@ public class ChristmasPresentAlgorithm {
     @GET
     @Path("/productvalues")
     public String Produkte() {
-    	URL csvFileProdukte = this.getClass().getResource("/data/Produkte.csv");
+    	String csvFileProdukte = "/Users/soeren.kleideiter/getting-started/src/main/java/org/acme/quickstart/Produkte.csv";
     	String line = "";
     	String cvsSplitBy =",";
     	
     	HashMap<String, String> productvalues = new HashMap<String, String>();
     	 	
     	
-    	try (BufferedReader br = new BufferedReader(new FileReader(csvFileProdukte.getPath())) {
+    	try (BufferedReader br = new BufferedReader(new FileReader(csvFileProdukte))) {
     	int LineCount = 0;
     	String[] headerList = null;
             while ((line = br.readLine()) != null) {
