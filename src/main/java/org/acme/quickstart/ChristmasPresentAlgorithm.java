@@ -11,6 +11,7 @@ import javax.ws.rs.DefaultValue;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.File;
 import java.io.IOException;
 
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
