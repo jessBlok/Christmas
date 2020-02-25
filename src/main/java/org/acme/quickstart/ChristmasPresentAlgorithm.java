@@ -35,14 +35,14 @@ public class ChristmasPresentAlgorithm {
     @GET
     @Path("/productvalues")
     public String Produkte() {
-    	String csvFileProdukte = "Produkte.csv";
+    	String filePath = new File("/Produkte.csv").getAbsolutePath();
     	String line = "";
     	String cvsSplitBy =",";
     	
     	HashMap<String, String> productvalues = new HashMap<String, String>();
     	 	
     	
-    	try (BufferedReader br = new BufferedReader(new FileReader(csvFileProdukte))) {
+    	try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
     	int LineCount = 0;
     	String[] headerList = null;
             while ((line = br.readLine()) != null) {
